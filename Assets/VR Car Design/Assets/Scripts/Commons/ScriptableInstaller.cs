@@ -11,11 +11,13 @@ namespace Commons
     {
         public MaterialScriptableObject materialScriptableObject;
         public CarScriptableObject carScriptableObject;
+        public UIScriptableObject uiScriptableObject;
        
         public override void InstallBindings()
         {
             Container.BindInstances(materialScriptableObject);
             Container.BindInstances(carScriptableObject);            
+            Container.BindInstances(uiScriptableObject);            
         }
     }
 }
