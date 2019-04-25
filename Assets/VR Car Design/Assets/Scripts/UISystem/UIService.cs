@@ -26,7 +26,7 @@ namespace UISystem
         private void SpawnCar(GameObject car)
         {
             carHolder = new GameObject("Car Holder");
-            carHolder.transform.position = new Vector3(50f,1f,15f);
+            carHolder.transform.position = new Vector3(0f,1f,20f);
 
             this.car = GameObject.Instantiate(car, Vector3.zero,Quaternion.identity);
             this.car.transform.SetParent(carHolder.transform);

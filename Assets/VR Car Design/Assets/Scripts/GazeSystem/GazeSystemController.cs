@@ -35,8 +35,9 @@ namespace GazeSystem
             {
                 if (hitInfo.collider == null)
                 {
+                    reticle.ResetReticle();
                     return;
-                }
+                }                
                 if (hitInfo.collider.GetComponent<IUIView>() == null)
                 {
                     return;
@@ -54,10 +55,7 @@ namespace GazeSystem
                     }
                 //}
             }
-            else
-            {
-                reticle.ResetReticle();
-            }
+            reticle.ResetReticle();
         }
 
         private void SpawnInputSystem()
