@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 2}
   carScriptableObject: {fileID: 11400000, guid: eacbeeeeb85a5cb4895aa394abcb5645,
     type: 2}
+  uiScriptableObject: {fileID: 11400000, guid: abb2bb3645b951f49a9c3aae2a267854, type: 2}

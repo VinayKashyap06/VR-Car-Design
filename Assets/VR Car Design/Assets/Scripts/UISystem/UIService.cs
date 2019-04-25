@@ -72,7 +72,7 @@ namespace UISystem
 
         public void ShowMenu()
         {
-            
+            Debug.Log("Show Menu Called");
         }
     }
 }
