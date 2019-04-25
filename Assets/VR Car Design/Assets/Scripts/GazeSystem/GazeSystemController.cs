@@ -37,25 +37,30 @@ namespace GazeSystem
                 {
                     reticle.ResetReticle();
                     return;
-                }                
+                }
                 if (hitInfo.collider.GetComponent<IUIView>() == null)
                 {
+                    counter = 0;
+                    reticle.ResetReticle();
                     return;
                 }
                 IUIView uIView = hitInfo.collider.GetComponent<IUIView>();
                 //if (!reticle.isAnimating)
                 //{
-                    reticle.isAnimating = true;
-                    counter += Time.deltaTime;
-                    reticle.fillImage.fillAmount = counter / reticle.duration;
-                    if (counter > reticle.duration)
-                    {                        
-                        uIView.PerformAction();
-                        counter = 0;
-                    }
+                reticle.isAnimating = true;
+                counter += Time.deltaTime;
+                reticle.fillImage.fillAmount = counter / reticle.duration;
+                if (counter > reticle.duration)
+                {
+                    uIView.PerformAction();
+                    counter = 0;
+                }
                 //}
             }
-            reticle.ResetReticle();
+            else
+            {
+                reticle.ResetReticle();
+            }
         }
 
         private void SpawnInputSystem()
