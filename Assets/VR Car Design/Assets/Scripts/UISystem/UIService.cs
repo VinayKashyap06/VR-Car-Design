@@ -1,7 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using Commons;
+﻿using Commons;
+using ScriptableObjects;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
 
 namespace UISystem
 {
@@ -13,22 +15,49 @@ namespace UISystem
         private Material defaultCarMaterial;
         private GameObject carHolder;
         private List<MaterialListStructure> materialList = new List<MaterialListStructure>();
+        private SignalBus signalBus;
 
-        
-        public UIService(CarScriptableObject carScriptableObject, MaterialScriptableObject materialScriptableObject)
+        public UIService(CarScriptableObject carScriptableObject, MaterialScriptableObject materialScriptableObject, SignalBus signalBus)
         {
             this.carScriptableObject = carScriptableObject;
             this.materialScriptableObject = materialScriptableObject;
             this.materialList = materialScriptableObject.materials;
+            this.signalBus = signalBus;
+            signalBus.Subscribe<PerformButtonFunctionSignal>(PerformButtonFunction);
+
             SpawnCar(carScriptableObject.car);
+        }
+
+        private void PerformButtonFunction(PerformButtonFunctionSignal performButtonFunctionSignal)
+        {
+            switch (performButtonFunctionSignal.buttonFunction)
+            {
+                case ButtonFunctionEnum.CAPTURE:
+                    break;
+                case ButtonFunctionEnum.HOME:
+                    break;
+                case ButtonFunctionEnum.SHOW_MENU:
+                    ShowMenu();
+                    break;
+                case ButtonFunctionEnum.SCREENSHOT:
+                    ScreenCapture.CaptureScreenshot("Capture1.png");
+                    break;
+                case ButtonFunctionEnum.EXIT_GAME:
+                    break;
+                case ButtonFunctionEnum.CHANGE_SCENE:
+                    break;
+                case ButtonFunctionEnum.CLOSE:
+                    break;
+            }
+
         }
 
         private void SpawnCar(GameObject car)
         {
             carHolder = new GameObject("Car Holder");
-            carHolder.transform.position = new Vector3(0f,1f,20f);
+            carHolder.transform.position = new Vector3(0f, 1f, 20f);
 
-            this.car = GameObject.Instantiate(car, Vector3.zero,Quaternion.identity);
+            this.car = GameObject.Instantiate(car, Vector3.zero, Quaternion.identity);
             this.car.transform.SetParent(carHolder.transform);
             this.car.transform.localPosition = Vector3.zero;
             defaultCarMaterial = this.car.GetComponent<Renderer>().material;
@@ -47,20 +76,9 @@ namespace UISystem
             SetCarMaterial();
         }
 
-        public void SetColor(ColorOptionsEnum colorOptionsEnum)
+        public void SetColor(Color color)
         {
-            switch (colorOptionsEnum)
-            {
-                case ColorOptionsEnum.BLACK:
-                    defaultCarMaterial.color = Color.black;
-                    break;
-                case ColorOptionsEnum.RED:
-                    defaultCarMaterial.color = Color.red;
-                    break;
-                case ColorOptionsEnum.BLUE:
-                    defaultCarMaterial.color = Color.blue;
-                    break;
-            }
+            defaultCarMaterial.color = color;
             SetCarMaterial();
         }
 

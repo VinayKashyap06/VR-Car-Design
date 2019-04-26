@@ -9,13 +9,16 @@ namespace UISystem
     public class UIView : MonoBehaviour,IUIView
     {
 
-        
+
         [Inject]
         private IUIService uIService;
 
+        [Inject]
+        private SignalBus signalBus;
+
         private Button thisButton;
         public MaterialTypeEnum materialType;
-        public ColorOptionsEnum colorType;
+        public Color colorType;
         public ButtonTypeEnum buttonType;
         public ButtonFunctionEnum buttonFunctionEnum;
         
@@ -33,34 +36,14 @@ namespace UISystem
                 {
                     uIService.SetMaterial(materialType);
                 }
-                else if (colorType != ColorOptionsEnum.NONE)
+                else if (colorType.a !=0)
                 {
                     uIService.SetColor(colorType);
                 }
             }
             else
             {
-                switch (buttonFunctionEnum) {
-                    case ButtonFunctionEnum.CAPTURE:
-                        break;
-                    case ButtonFunctionEnum.HOME:
-                        break;
-                    case ButtonFunctionEnum.SHOW_MENU:
-                        uIService.ShowMenu();
-                        break;
-                    case ButtonFunctionEnum.SCREENSHOT:
-                        ScreenCapture.CaptureScreenshot("Capture1.png");                        
-                        break;
-                    case ButtonFunctionEnum.EXIT_GAME:
-                        break;
-                    case ButtonFunctionEnum.CHANGE_SCENE:
-                        break;
-                    case ButtonFunctionEnum.CLOSE:
-                        break;
-
-                }
-
-                uIService.ShowMenu();
+                signalBus.TryFire(new PerformButtonFunctionSignal() { buttonFunction = buttonFunctionEnum });
             }            
         }      
     }

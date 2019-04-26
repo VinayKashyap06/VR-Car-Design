@@ -29,6 +29,12 @@ namespace GazeSystem
             ray.direction = cam.transform.forward;
             PeformRaycast();
         }
+
+        public void SetPlayerReference(GameObject player)
+        {
+           
+        }
+
         private void PeformRaycast()
         {
             if (Physics.Raycast(ray, out hitInfo, 500f))
@@ -44,9 +50,7 @@ namespace GazeSystem
                     reticle.ResetReticle();
                     return;
                 }
-                IUIView uIView = hitInfo.collider.GetComponent<IUIView>();
-                //if (!reticle.isAnimating)
-                //{
+                IUIView uIView = hitInfo.collider.GetComponent<IUIView>();           
                 reticle.isAnimating = true;
                 counter += Time.deltaTime;
                 reticle.fillImage.fillAmount = counter / reticle.duration;
@@ -54,8 +58,7 @@ namespace GazeSystem
                 {
                     uIView.PerformAction();
                     counter = 0;
-                }
-                //}
+                }              
             }
             else
             {
