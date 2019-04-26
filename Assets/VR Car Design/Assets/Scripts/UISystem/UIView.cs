@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using Zenject;
 using System;
@@ -7,13 +8,9 @@ using System;
 namespace UISystem
 {
     public class UIView : MonoBehaviour,IUIView
-    {
-
-
-        [Inject]
+    {        
         private IUIService uIService;
 
-        [Inject]
         private SignalBus signalBus;
 
         private Button thisButton;
@@ -21,13 +18,22 @@ namespace UISystem
         public Color colorType;
         public ButtonTypeEnum buttonType;
         public ButtonFunctionEnum buttonFunctionEnum;
+
+        public bool ShouldBeDeactivated;
         
-        private void Start()
-        {
+        private void Awake()
+        {           
             thisButton = GetComponent<Button>();
-            thisButton.onClick.AddListener(() =>PerformAction());
+            thisButton.onClick.AddListener(() =>PerformAction());          
+            if (ShouldBeDeactivated)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
-        
+        public void SetSignalBusRef(SignalBus signalBus)
+        {
+            this.signalBus = signalBus;
+        }
         public void PerformAction()
         {           
             if (buttonType != ButtonTypeEnum.MENU)
@@ -43,8 +49,13 @@ namespace UISystem
             }
             else
             {
-                signalBus.TryFire(new PerformButtonFunctionSignal() { buttonFunction = buttonFunctionEnum });
+                signalBus.TryFire(new PerformButtonFunctionSignal() { buttonFunction = buttonFunctionEnum ,uIView=this});
             }            
-        }      
+        }
+
+        public void SetUIServiceRef(IUIService uIService)
+        {
+            this.uIService = uIService;
+        }
     }
 }

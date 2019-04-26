@@ -6,22 +6,13 @@ using Zenject;
 
 namespace GazeSystem
 {
-    public class GazeSystemController : IInitializable, IGazeSystem
+    public class GazeSystemController : IGazeSystem
     {
         private ReticleView reticle;
         RaycastHit hitInfo;
         private Camera cam;
         Ray ray;
         private float counter;
-
-        public void Initialize()
-        {
-            cam = Camera.main;
-            ray.origin = cam.transform.position;
-            ray.direction = cam.transform.forward;
-            reticle = cam.GetComponentInChildren<ReticleView>();
-           // SpawnInputSystem();
-        }
 
         public void OnTick()
         {
@@ -32,7 +23,8 @@ namespace GazeSystem
 
         public void SetPlayerReference(GameObject player)
         {
-           
+            cam = player.GetComponentInChildren<Camera>();
+            reticle = cam.GetComponentInChildren<ReticleView>();
         }
 
         private void PeformRaycast()
@@ -50,15 +42,15 @@ namespace GazeSystem
                     reticle.ResetReticle();
                     return;
                 }
-                IUIView uIView = hitInfo.collider.GetComponent<IUIView>();           
-                reticle.isAnimating = true;
+                IUIView uIView = hitInfo.collider.GetComponent<IUIView>();
                 counter += Time.deltaTime;
                 reticle.fillImage.fillAmount = counter / reticle.duration;
                 if (counter > reticle.duration)
                 {
                     uIView.PerformAction();
                     counter = 0;
-                }              
+
+                }
             }
             else
             {

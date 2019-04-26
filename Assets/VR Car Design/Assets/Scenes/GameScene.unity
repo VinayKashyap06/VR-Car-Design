@@ -182,38 +182,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &864223550 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8938327070171007993, guid: df67be605445d6346ab5bb51c7e9d997,
-    type: 3}
-  m_PrefabInstance: {fileID: 8938327068643316328}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &864223551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864223550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae8dda62ea26954992975fea29f6983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 864223552}
-  duration: 3
---- !u!114 &864223552 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8938327070171007995, guid: df67be605445d6346ab5bb51c7e9d997,
-    type: 3}
-  m_PrefabInstance: {fileID: 8938327068643316328}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864223550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &925215864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1189,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8938327068462059461, guid: df67be605445d6346ab5bb51c7e9d997,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8938327068462059462, guid: df67be605445d6346ab5bb51c7e9d997,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1275,16 +1248,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8938327069743758662, guid: df67be605445d6346ab5bb51c7e9d997,
-        type: 3}
-      propertyPath: materialType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8938327069743758662, guid: df67be605445d6346ab5bb51c7e9d997,
-        type: 3}
-      propertyPath: colorType
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df67be605445d6346ab5bb51c7e9d997, type: 3}

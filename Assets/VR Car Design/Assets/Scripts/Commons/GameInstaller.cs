@@ -14,16 +14,17 @@ namespace Commons
         {
             SignalBusInstaller.Install(Container);
             Container.DeclareSignal<PerformButtonFunctionSignal>();
+            Container.DeclareSignal<SceneChangeSignal>();
 
             Container.Bind<IUIService>().
                 To<UIService>().
                 AsSingle().
                 NonLazy();
-            Container.Bind(typeof(IInitializable),typeof(IGazeSystem)).
+            Container.Bind<IGazeSystem>().
                 To<GazeSystemController>().
                 AsSingle().
                 NonLazy();
-            Container.Bind(typeof(IInitializable),typeof(IGameService)).
+            Container.Bind<IGameService>().
                 To<GameService>().
                 AsSingle().
                 NonLazy();            

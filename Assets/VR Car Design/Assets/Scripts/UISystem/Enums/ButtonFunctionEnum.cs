@@ -6,8 +6,7 @@ namespace UISystem
     public enum ButtonFunctionEnum
     {
         SCREENSHOT,
-        CHANGE_SCENE,
-        CAPTURE,
+        CHANGE_SCENE,        
         HOME,
         SHOW_MENU,
         EXIT_GAME,

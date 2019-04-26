@@ -1,6 +1,7 @@
 ﻿using Commons;
 using ScriptableObjects;
 using System;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -16,25 +17,37 @@ namespace UISystem
         private GameObject carHolder;
         private List<MaterialListStructure> materialList = new List<MaterialListStructure>();
         private SignalBus signalBus;
-
+        private UIView[] uIViews;
         public UIService(CarScriptableObject carScriptableObject, MaterialScriptableObject materialScriptableObject, SignalBus signalBus)
         {
+            uIViews=GameObject.FindObjectsOfType<UIView>();
+            for (int i = 0; i < uIViews.Length; i++)
+            {
+               // Debug.Log("dsads");
+                uIViews[i].SetUIServiceRef(this);
+                uIViews[i].SetSignalBusRef(signalBus);
+            }
+
             this.carScriptableObject = carScriptableObject;
             this.materialScriptableObject = materialScriptableObject;
             this.materialList = materialScriptableObject.materials;
             this.signalBus = signalBus;
             signalBus.Subscribe<PerformButtonFunctionSignal>(PerformButtonFunction);
 
-            SpawnCar(carScriptableObject.car);
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+            {
+
+                SpawnCar(carScriptableObject.car);
+            }
         }
 
-        private void PerformButtonFunction(PerformButtonFunctionSignal performButtonFunctionSignal)
+        private  void PerformButtonFunction(PerformButtonFunctionSignal performButtonFunctionSignal)
         {
             switch (performButtonFunctionSignal.buttonFunction)
-            {
-                case ButtonFunctionEnum.CAPTURE:
-                    break;
+            {              
                 case ButtonFunctionEnum.HOME:
+                    signalBus.TryFire(new SceneChangeSignal());                   
+                    SceneManager.LoadSceneAsync(0);
                     break;
                 case ButtonFunctionEnum.SHOW_MENU:
                     ShowMenu();
@@ -43,10 +56,14 @@ namespace UISystem
                     ScreenCapture.CaptureScreenshot("Capture1.png");
                     break;
                 case ButtonFunctionEnum.EXIT_GAME:
+                    Application.Quit();
                     break;
                 case ButtonFunctionEnum.CHANGE_SCENE:
+                    signalBus.TryFire(new SceneChangeSignal());                   
+                    SceneManager.LoadSceneAsync(1);
                     break;
                 case ButtonFunctionEnum.CLOSE:
+                    performButtonFunctionSignal.uIView.gameObject.SetActive(false);
                     break;
             }
 
@@ -56,7 +73,6 @@ namespace UISystem
         {
             carHolder = new GameObject("Car Holder");
             carHolder.transform.position = new Vector3(0f, 1f, 20f);
-
             this.car = GameObject.Instantiate(car, Vector3.zero, Quaternion.identity);
             this.car.transform.SetParent(carHolder.transform);
             this.car.transform.localPosition = Vector3.zero;
@@ -93,5 +109,9 @@ namespace UISystem
             Debug.Log("Show Menu Called");
         }
 
+        public SignalBus GetSignalBus()
+        {
+            return signalBus;
+        }
     }
 }

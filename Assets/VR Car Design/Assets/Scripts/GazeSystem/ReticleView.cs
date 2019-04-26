@@ -7,36 +7,15 @@ using System.Threading.Tasks;
 
 public class ReticleView : MonoBehaviour
 {
-    //[SerializeField]
-    public Image fillImage;
-   // [SerializeField]
-    public Image defaultImage;
-
-   // [SerializeField]
-    public float duration;
-
-   
-    public bool isAnimating=false;
+    public Image fillImage;    
+    public float duration;      
     private void Start()
-    {
-        defaultImage.color = Color.white;
-        fillImage.color = Color.green;
-        defaultImage.fillAmount = 1f;
-        fillImage.fillAmount = 0;
-        
-    }
-    public void PerformAnimation(IUIView uIView)
-    {
-
-                
-        isAnimating = false;
-    }
+    {        
+        fillImage.color = Color.green;        
+        fillImage.fillAmount = 0;        
+    }   
     public void ResetReticle()
     {
         fillImage.fillAmount = 0;
-    }
-    public bool IsAnimating()
-    {
-        return isAnimating;
-    }
+    } 
 }
