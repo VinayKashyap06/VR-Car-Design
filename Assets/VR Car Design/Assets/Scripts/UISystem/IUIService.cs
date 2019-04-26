@@ -6,7 +6,6 @@ namespace UISystem
     public interface IUIService
     {
         void SetMaterial(MaterialTypeEnum materialTypeEnum);
-        void SetColor(Color color);
-        void ShowMenu();
+        void SetColor(Color color);        
     }
 }
