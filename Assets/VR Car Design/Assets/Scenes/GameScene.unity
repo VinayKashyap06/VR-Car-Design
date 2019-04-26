@@ -948,35 +948,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1976329729}
-    - target: {fileID: 5507897610607633036, guid: 5876bec136fb4794cb7852fedcd6dab0,
+    - target: {fileID: 5507897609897256576, guid: 5876bec136fb4794cb7852fedcd6dab0,
         type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5507897610607633036, guid: 5876bec136fb4794cb7852fedcd6dab0,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5507897610652563179, guid: 5876bec136fb4794cb7852fedcd6dab0,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5507897610652563179, guid: 5876bec136fb4794cb7852fedcd6dab0,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5507897609272244523, guid: 5876bec136fb4794cb7852fedcd6dab0,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5507897609272244523, guid: 5876bec136fb4794cb7852fedcd6dab0,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5507897609664223991, guid: 5876bec136fb4794cb7852fedcd6dab0,
         type: 3}
@@ -1013,10 +988,35 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5507897609897256576, guid: 5876bec136fb4794cb7852fedcd6dab0,
+    - target: {fileID: 5507897609272244523, guid: 5876bec136fb4794cb7852fedcd6dab0,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507897609272244523, guid: 5876bec136fb4794cb7852fedcd6dab0,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507897610607633036, guid: 5876bec136fb4794cb7852fedcd6dab0,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507897610607633036, guid: 5876bec136fb4794cb7852fedcd6dab0,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507897610652563179, guid: 5876bec136fb4794cb7852fedcd6dab0,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507897610652563179, guid: 5876bec136fb4794cb7852fedcd6dab0,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5876bec136fb4794cb7852fedcd6dab0, type: 3}
@@ -1147,16 +1147,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1976329729}
-    - target: {fileID: 5930614400607456831, guid: 1ab90e2fea1b4184c80cf4436a7339fb,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5930614400607456831, guid: 1ab90e2fea1b4184c80cf4436a7339fb,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5930614400212159354, guid: 1ab90e2fea1b4184c80cf4436a7339fb,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1176,6 +1166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930614401731043707, guid: 1ab90e2fea1b4184c80cf4436a7339fb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5930614401731043709, guid: 1ab90e2fea1b4184c80cf4436a7339fb,
         type: 3}
@@ -1201,6 +1196,16 @@ PrefabInstance:
         type: 3}
       propertyPath: colorType.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930614400607456831, guid: 1ab90e2fea1b4184c80cf4436a7339fb,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930614400607456831, guid: 1ab90e2fea1b4184c80cf4436a7339fb,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab90e2fea1b4184c80cf4436a7339fb, type: 3}

@@ -88,9 +88,10 @@ namespace UISystem
             this.car.GetComponent<Renderer>().material = defaultCarMaterial;
         }
 
-        public void ShowMenu()
+        private void ShowMenu()
         {
             Debug.Log("Show Menu Called");
         }
+
     }
 }
