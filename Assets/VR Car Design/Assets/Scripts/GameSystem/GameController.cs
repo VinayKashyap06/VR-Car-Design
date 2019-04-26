@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UISystem;
 using GazeSystem;
-using InputSystem;
+using ScriptableObjects;
 using Zenject;
 
 namespace GameSystem

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Commons
+namespace ScriptableObjects
 {
     [CreateAssetMenu(fileName ="CarScriptableObject",menuName ="Custom Objects/Car Prefab",order =0)]
     public class CarScriptableObject : ScriptableObject

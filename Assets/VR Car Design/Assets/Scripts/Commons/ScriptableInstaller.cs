@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using UISystem;
+using ScriptableObjects;
 
 namespace Commons
 {
@@ -12,12 +12,14 @@ namespace Commons
         public MaterialScriptableObject materialScriptableObject;
         public CarScriptableObject carScriptableObject;
         public UIScriptableObject uiScriptableObject;
+        public PlayerScriptableObject playerScriptableObject;
        
         public override void InstallBindings()
         {
             Container.BindInstances(materialScriptableObject);
             Container.BindInstances(carScriptableObject);            
             Container.BindInstances(uiScriptableObject);            
+            Container.BindInstances(playerScriptableObject);            
         }
     }
 }

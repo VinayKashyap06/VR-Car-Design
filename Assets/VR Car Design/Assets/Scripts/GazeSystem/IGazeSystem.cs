@@ -7,5 +7,6 @@ namespace GazeSystem
     public interface IGazeSystem
     {
         void OnTick();
+        void SetPlayerReference(GameObject player);
     }
 }

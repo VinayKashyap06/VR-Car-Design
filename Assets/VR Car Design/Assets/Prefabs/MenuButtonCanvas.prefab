@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dbb88b7b57d744a9770e06ebbcaa5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialType: 0
-  colorType: 0
+  materialType: 3
+  colorType: 3
   buttonType: 0
   buttonFunctionEnum: 4
 --- !u!65 &1093684641
