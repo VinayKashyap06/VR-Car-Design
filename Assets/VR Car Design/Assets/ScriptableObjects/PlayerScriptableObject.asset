@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: PlayerScriptableObject
   m_EditorClassIdentifier: 
   player: {fileID: 8938327068462059461, guid: df67be605445d6346ab5bb51c7e9d997, type: 3}
+  jumpPointPrefab: {fileID: 6476085699158539326, guid: cefaf0f6206b4cd44bc397cc581349e9,
+    type: 3}

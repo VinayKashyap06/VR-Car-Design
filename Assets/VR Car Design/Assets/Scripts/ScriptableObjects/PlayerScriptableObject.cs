@@ -7,5 +7,6 @@ namespace ScriptableObjects
     public class PlayerScriptableObject : ScriptableObject
     {
         public GameObject player;
+        public GameObject jumpPointPrefab;
     }
 }

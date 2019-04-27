@@ -22,12 +22,10 @@ namespace UISystem
         {
             uIViews=GameObject.FindObjectsOfType<UIView>();
             for (int i = 0; i < uIViews.Length; i++)
-            {
-               // Debug.Log("dsads");
+            {               
                 uIViews[i].SetUIServiceRef(this);
                 uIViews[i].SetSignalBusRef(signalBus);
             }
-
             this.carScriptableObject = carScriptableObject;
             this.materialScriptableObject = materialScriptableObject;
             this.materialList = materialScriptableObject.materials;
@@ -36,11 +34,61 @@ namespace UISystem
 
             if (SceneManager.GetActiveScene().buildIndex != 0)
             {
-
                 SpawnCar(carScriptableObject.car);
             }
         }
 
+
+        private void SpawnCar(GameObject car)
+        {
+            carHolder = new GameObject("Car Holder");
+            carHolder.transform.position = new Vector3(0f, 0f, 20f);
+            this.car = GameObject.Instantiate(car, Vector3.zero, car.transform.rotation);
+            this.car.transform.SetParent(carHolder.transform);
+            this.car.transform.localPosition = Vector3.zero;
+            defaultCarMaterial = this.car.GetComponentInChildren<Renderer>().material;
+        }
+        public void SetMaterial(MaterialTypeEnum materialTypeEnum)
+        {
+            for (int i = 0; i < materialList.Count; i++)
+            {
+                if (materialList[i].materialType == materialTypeEnum)
+                {
+                    defaultCarMaterial = materialList[i].material;
+                    break;
+                }
+            }
+            SetCarMaterial();
+        }
+
+        public void SetColor(Color color)
+        {
+            defaultCarMaterial.color = color;
+            SetCarMaterial();
+        }
+
+        private void SetCarMaterial()
+        {
+            Debug.Log("SettingMaterial");
+            Material[] mats = car.transform.GetChild(0).GetComponent<MeshRenderer>().materials;
+            for (int i = 0; i < mats.Length; i++)
+            {
+                mats[i] = defaultCarMaterial;
+            }
+            car.transform.GetChild(0).GetComponent<MeshRenderer>().materials = mats;
+            //this.car.GetComponentInChildren<Renderer>().material = defaultCarMaterial;
+        }
+
+        private void ShowMenu()
+        {
+            
+            Debug.Log("Show Menu Called");
+        }
+
+        public SignalBus GetSignalBus()
+        {
+            return signalBus;
+        }
         private  void PerformButtonFunction(PerformButtonFunctionSignal performButtonFunctionSignal)
         {
             switch (performButtonFunctionSignal.buttonFunction)
@@ -67,51 +115,6 @@ namespace UISystem
                     break;
             }
 
-        }
-
-        private void SpawnCar(GameObject car)
-        {
-            carHolder = new GameObject("Car Holder");
-            carHolder.transform.position = new Vector3(0f, 1f, 20f);
-            this.car = GameObject.Instantiate(car, Vector3.zero, Quaternion.identity);
-            this.car.transform.SetParent(carHolder.transform);
-            this.car.transform.localPosition = Vector3.zero;
-            defaultCarMaterial = this.car.GetComponent<Renderer>().material;
-        }
-
-        public void SetMaterial(MaterialTypeEnum materialTypeEnum)
-        {
-            for (int i = 0; i < materialList.Count; i++)
-            {
-                if (materialList[i].materialType == materialTypeEnum)
-                {
-                    defaultCarMaterial = materialList[i].material;
-                    break;
-                }
-            }
-            SetCarMaterial();
-        }
-
-        public void SetColor(Color color)
-        {
-            defaultCarMaterial.color = color;
-            SetCarMaterial();
-        }
-
-        private void SetCarMaterial()
-        {
-            Debug.Log("SettingMaterial");
-            this.car.GetComponent<Renderer>().material = defaultCarMaterial;
-        }
-
-        private void ShowMenu()
-        {
-            Debug.Log("Show Menu Called");
-        }
-
-        public SignalBus GetSignalBus()
-        {
-            return signalBus;
         }
     }
 }

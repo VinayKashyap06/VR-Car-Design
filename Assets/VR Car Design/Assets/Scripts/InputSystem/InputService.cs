@@ -8,8 +8,8 @@ namespace InputSystem
     public class InputService: MonoBehaviour, IInputSystem
     {
        
-        private IGazeSystem gazeSystem;
-        public void SetGazeSystem(IGazeSystem gazeSystem)
+        private IGazeService gazeSystem;
+        public void SetGazeSystem(IGazeService gazeSystem)
         {
             this.gazeSystem = gazeSystem;
         }

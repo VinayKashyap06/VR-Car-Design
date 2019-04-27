@@ -4,15 +4,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UISystem;
 using Zenject;
-using System;
 
 namespace GazeSystem
 {
     public class PlayerController : MonoBehaviour
     {
         public Image image;
-        [SerializeField]
-        private float duration;
+       
+        public float duration;
         public Canvas menuButtonCanvas;
 
         //[Inject]
@@ -59,7 +58,7 @@ namespace GazeSystem
         {
             isShowing = true;
             alpha = 0;
-            isTransition = true;
+            isTransition = true;            
         }
         public void FadeOut()
         {

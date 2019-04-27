@@ -8,8 +8,8 @@ namespace GameSystem
 {
     public class GameController : IGameController
     {
-        private IGazeSystem gazeSystem;
-        public GameController(IGazeSystem gazeSystem,UIScriptableObject uIScriptableObject)
+        private IGazeService gazeSystem;
+        public GameController(IGazeService gazeSystem,UIScriptableObject uIScriptableObject)
         {
             this.gazeSystem = gazeSystem;
         }

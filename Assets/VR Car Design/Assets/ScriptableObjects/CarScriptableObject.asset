@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5422e376cf738d84e8b48154574d8ad3, type: 3}
   m_Name: CarScriptableObject
   m_EditorClassIdentifier: 
-  car: {fileID: 1868975967657804398, guid: 6082d80fc4ae4244696ccc50a0a0ea23, type: 3}
+  car: {fileID: 5132212562806020021, guid: b198e2b5cd7b2794e9ecd53222b43ee9, type: 3}

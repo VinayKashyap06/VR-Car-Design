@@ -20,8 +20,8 @@ namespace Commons
                 To<UIService>().
                 AsSingle().
                 NonLazy();
-            Container.Bind<IGazeSystem>().
-                To<GazeSystemController>().
+            Container.Bind<IGazeService>().
+                To<GazeService>().
                 AsSingle().
                 NonLazy();
             Container.Bind<IGameService>().
