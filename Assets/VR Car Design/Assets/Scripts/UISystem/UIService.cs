@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using GazeSystem;
 
 namespace UISystem
 {
@@ -18,6 +19,8 @@ namespace UISystem
         private List<MaterialListStructure> materialList = new List<MaterialListStructure>();
         private SignalBus signalBus;
         private UIView[] uIViews;
+        private PlayerController playerController;
+
         public UIService(CarScriptableObject carScriptableObject, MaterialScriptableObject materialScriptableObject, SignalBus signalBus)
         {
             uIViews=GameObject.FindObjectsOfType<UIView>();
@@ -81,7 +84,7 @@ namespace UISystem
 
         private void ShowMenu()
         {
-            
+            playerController.ShowMenu();
             Debug.Log("Show Menu Called");
         }
 
@@ -111,10 +114,15 @@ namespace UISystem
                     SceneManager.LoadSceneAsync(1);
                     break;
                 case ButtonFunctionEnum.CLOSE:
-                    performButtonFunctionSignal.uIView.gameObject.SetActive(false);
+                    //performButtonFunctionSignal.uIView.transform.parent.gameObject.SetActive(false);
                     break;
             }
 
+        }
+
+        public void SetCurrentPlayerControllerRef(PlayerController playerController)
+        {
+           this.playerController = playerController;
         }
     }
 }

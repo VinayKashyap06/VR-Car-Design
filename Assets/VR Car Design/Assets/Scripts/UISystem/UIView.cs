@@ -24,15 +24,12 @@ namespace UISystem
         private void Awake()
         {           
             thisButton = GetComponent<Button>();
-            thisButton.onClick.AddListener(() =>PerformAction());          
-            if (ShouldBeDeactivated)
-            {
-                this.gameObject.SetActive(false);
-            }
+            thisButton.onClick.AddListener(() =>PerformAction());                    
         }
         public void SetSignalBusRef(SignalBus signalBus)
         {
             this.signalBus = signalBus;
+            Debug.Log("Signal Bus Set UI VIEW ",gameObject);
         }
         public void PerformAction()
         {           

@@ -39,6 +39,8 @@ namespace GameSystem
             {
                 playerHolder = GameObject.FindObjectOfType<PlayerController>().gameObject;
                 currentPlayerController=playerHolder.GetComponentInChildren<PlayerController>();
+                currentPlayerController.SetSignalBusRef(signalBus);
+                currentPlayerController.SetUIRef( uIService);
                 SpawnPlayerJumpPoint(playerHolder.transform.position);
                 
                 return;
@@ -50,9 +52,8 @@ namespace GameSystem
                 gazeSystem.SetPlayerReference(playerHolder);
                 currentPlayerController = playerHolder.GetComponentInChildren<PlayerController>();
                 SpawnPlayerJumpPoint(playerHolder.transform.position);
-                playerHolder.GetComponent<PlayerController>().SetSignalBusRef(signalBus);                
-                playerHolder.GetComponentInChildren<UIView>().SetSignalBusRef(signalBus);                
-                playerHolder.GetComponentInChildren<UIView>().SetUIServiceRef(uIService);                
+                currentPlayerController.SetSignalBusRef(signalBus);
+                currentPlayerController.SetUIRef(uIService);       
             }
             Debug.Log("Spawn Player called");
             

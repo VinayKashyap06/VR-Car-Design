@@ -71,13 +71,11 @@ namespace GazeSystem
                     counter = 0;
                     reticle.ResetReticle();
                 }
-
             }
             else
             {
                 reticle.ResetReticle();
             }
         }
-
     }
 }
