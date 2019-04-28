@@ -36,7 +36,7 @@ namespace GazeSystem
 
         private void PeformRaycast()
         {
-            if (Physics.Raycast(ray, out hitInfo, 500f))
+            if (Physics.Raycast(ray, out hitInfo, 200f))
             {
                 if (hitInfo.collider == null)
                 {

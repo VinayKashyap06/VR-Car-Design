@@ -38,7 +38,8 @@ namespace GameSystem
             if (GameObject.FindObjectOfType<PlayerController>() != null)
             {
                 playerHolder = GameObject.FindObjectOfType<PlayerController>().gameObject;
-                currentPlayerController=playerHolder.GetComponentInChildren<PlayerController>();
+                gazeSystem.SetPlayerReference(playerHolder);
+                currentPlayerController =playerHolder.GetComponentInChildren<PlayerController>();
                 currentPlayerController.SetSignalBusRef(signalBus);
                 currentPlayerController.SetUIRef( uIService);
                 SpawnPlayerJumpPoint(playerHolder.transform.position);

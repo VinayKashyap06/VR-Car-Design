@@ -13,7 +13,7 @@ namespace GazeSystem
         public Image image;
        
         public float duration;
-        public Canvas menuButtonCanvas;
+       // public Canvas menuButtonCanvas;
         public Canvas menuCanvas;
 
         //[Inject]
@@ -36,7 +36,7 @@ namespace GazeSystem
             FadeOut();      
         }
 
-        void FixedUpdate()
+        void Update()
         {
             if (!isTransition)
                 return;
@@ -56,7 +56,7 @@ namespace GazeSystem
             {
                 item.SetSignalBusRef(signalBus);
             }
-            menuButtonCanvas.GetComponentInChildren<UIView>().SetSignalBusRef(signalBus);
+          //  menuButtonCanvas.GetComponentInChildren<UIView>().SetSignalBusRef(signalBus);
             this.signalBus.Subscribe<SceneChangeSignal>(FadeIn);
         }
 
@@ -75,7 +75,7 @@ namespace GazeSystem
         }      
         public void SetUIRef(IUIService uIService)
         {
-            menuButtonCanvas.GetComponentInChildren<UIView>().SetUIServiceRef(uIService);
+           // menuButtonCanvas.GetComponentInChildren<UIView>().SetUIServiceRef(uIService);
             UIView[] components = menuCanvas.GetComponentsInChildren<UIView>();
             foreach (var item in components)
             {
