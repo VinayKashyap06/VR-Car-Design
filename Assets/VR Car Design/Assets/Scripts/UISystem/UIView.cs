@@ -46,6 +46,7 @@ namespace UISystem
             }
             else
             {
+                Debug.Log("firing signal");
                 signalBus.TryFire(new PerformButtonFunctionSignal() { buttonFunction = buttonFunctionEnum ,uIView=this});
             }            
         }

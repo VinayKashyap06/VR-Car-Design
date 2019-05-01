@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/VR Car Design/Assets/Scenes/SampleScene.unity
+    path: Assets/VR Car Design/Assets/Scenes/MenuScene.unity
     guid: a069fd0ae85caea48b1ab95c29d083a7
   - enabled: 1
     path: Assets/VR Car Design/Assets/Scenes/GameScene.unity

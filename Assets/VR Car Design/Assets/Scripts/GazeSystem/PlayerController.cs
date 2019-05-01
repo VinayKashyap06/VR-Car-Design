@@ -14,7 +14,8 @@ namespace GazeSystem
        
         public float duration;
        // public Canvas menuButtonCanvas;
-        public Canvas menuCanvas;
+        public MenuCanvasView menuCanvas;
+        public UIView menuButton;
 
         //[Inject]
         private SignalBus signalBus;
@@ -28,7 +29,8 @@ namespace GazeSystem
         {           
             SceneManager.sceneLoaded += SceneLoaded;
             originalColor = image.color;
-            menuCanvas.gameObject.SetActive(false);
+            menuCanvas.gameObject.SetActive(false);            
+
         }
 
         private void SceneLoaded(Scene scene, LoadSceneMode loadMode)
@@ -55,9 +57,9 @@ namespace GazeSystem
             foreach (var item in components)
             {
                 item.SetSignalBusRef(signalBus);
-            }
-          //  menuButtonCanvas.GetComponentInChildren<UIView>().SetSignalBusRef(signalBus);
+            }          
             this.signalBus.Subscribe<SceneChangeSignal>(FadeIn);
+            menuButton.SetSignalBusRef(signalBus);
         }
 
         public void FadeIn()
@@ -74,19 +76,24 @@ namespace GazeSystem
             isTransition = true;
         }      
         public void SetUIRef(IUIService uIService)
-        {
-           // menuButtonCanvas.GetComponentInChildren<UIView>().SetUIServiceRef(uIService);
+        {           
             UIView[] components = menuCanvas.GetComponentsInChildren<UIView>();
             foreach (var item in components)
             {
                 item.SetUIServiceRef(uIService);
             }
-
             uIService.SetCurrentPlayerControllerRef(this);
+            menuButton.SetUIServiceRef(uIService);
+
         }
         public void ShowMenu()
         {
             menuCanvas.gameObject.SetActive(true);
+        }
+
+        public void HideMenu()
+        {
+            menuCanvas.gameObject.SetActive(false);
         }
     }
 }

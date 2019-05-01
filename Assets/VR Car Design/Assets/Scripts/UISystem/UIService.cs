@@ -23,33 +23,40 @@ namespace UISystem
 
         public UIService(CarScriptableObject carScriptableObject, MaterialScriptableObject materialScriptableObject, SignalBus signalBus)
         {
-            uIViews=GameObject.FindObjectsOfType<UIView>();
-            for (int i = 0; i < uIViews.Length; i++)
-            {               
-                uIViews[i].SetUIServiceRef(this);
-                uIViews[i].SetSignalBusRef(signalBus);
-            }
+          
             this.carScriptableObject = carScriptableObject;
             this.materialScriptableObject = materialScriptableObject;
             this.materialList = materialScriptableObject.materials;
-            this.signalBus = signalBus;
-            signalBus.Subscribe<PerformButtonFunctionSignal>(PerformButtonFunction);
+            this.signalBus = signalBus;          
+           // signalBus.Subscribe<PerformButtonFunctionSignal>(PerformButtonFunction);
+            SceneManager.sceneLoaded += OnNewSceneLoaded;
+        }
 
-            if (SceneManager.GetActiveScene().buildIndex != 0)
+        private void OnNewSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+        {
+            signalBus.TryUnsubscribe<PerformButtonFunctionSignal>(PerformButtonFunction);
+            uIViews = GameObject.FindObjectsOfType<UIView>();
+            for (int i = 0; i < uIViews.Length; i++)
+            {
+                uIViews[i].SetUIServiceRef(this);
+                uIViews[i].SetSignalBusRef(signalBus);
+            }
+            if (scene.buildIndex != 0)
             {
                 SpawnCar(carScriptableObject.car);
             }
+            signalBus.Subscribe<PerformButtonFunctionSignal>(PerformButtonFunction);
         }
-
 
         private void SpawnCar(GameObject car)
         {
             carHolder = new GameObject("Car Holder");
-            carHolder.transform.position = new Vector3(0f, 0f, 20f);
+            carHolder.transform.position = new Vector3(0f, 1f, 15f);
             this.car = GameObject.Instantiate(car, Vector3.zero, car.transform.rotation);
             this.car.transform.SetParent(carHolder.transform);
             this.car.transform.localPosition = Vector3.zero;
             defaultCarMaterial = this.car.GetComponentInChildren<Renderer>().material;
+            
         }
         public void SetMaterial(MaterialTypeEnum materialTypeEnum)
         {
@@ -73,20 +80,9 @@ namespace UISystem
         private void SetCarMaterial()
         {
             Debug.Log("SettingMaterial");
-            Material[] mats = car.transform.GetChild(0).GetComponent<MeshRenderer>().materials;
-            for (int i = 0; i < mats.Length; i++)
-            {
-                mats[i] = defaultCarMaterial;
-            }
-            car.transform.GetChild(0).GetComponent<MeshRenderer>().materials = mats;
-            //this.car.GetComponentInChildren<Renderer>().material = defaultCarMaterial;
+            this.car.GetComponentInChildren<Renderer>().material = defaultCarMaterial;
         }
-
-        private void ShowMenu()
-        {
-            playerController.ShowMenu();
-            Debug.Log("Show Menu Called");
-        }
+      
 
         public SignalBus GetSignalBus()
         {
@@ -101,7 +97,8 @@ namespace UISystem
                     SceneManager.LoadSceneAsync(0);
                     break;
                 case ButtonFunctionEnum.SHOW_MENU:
-                    ShowMenu();
+                    Debug.Log("Show menu called");
+                    playerController.ShowMenu();
                     break;
                 case ButtonFunctionEnum.SCREENSHOT:
                     ScreenCapture.CaptureScreenshot("Capture1.png");
@@ -109,12 +106,12 @@ namespace UISystem
                 case ButtonFunctionEnum.EXIT_GAME:
                     Application.Quit();
                     break;
-                case ButtonFunctionEnum.CHANGE_SCENE:
+                case ButtonFunctionEnum.GARAGE:
                     signalBus.TryFire(new SceneChangeSignal());                   
                     SceneManager.LoadSceneAsync(1);
                     break;
                 case ButtonFunctionEnum.CLOSE:
-                    //performButtonFunctionSignal.uIView.transform.parent.gameObject.SetActive(false);
+                    playerController.HideMenu();
                     break;
             }
 
@@ -123,6 +120,7 @@ namespace UISystem
         public void SetCurrentPlayerControllerRef(PlayerController playerController)
         {
            this.playerController = playerController;
+            
         }
     }
 }

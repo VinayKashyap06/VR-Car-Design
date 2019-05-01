@@ -18,14 +18,16 @@ namespace GazeSystem
 
         public void OnTick()
         {
+           // Debug.Log("ticking");
             ray.origin = cam.transform.position;
             ray.direction = cam.transform.forward;
             PeformRaycast();
         }
 
-        public void SetGameServiceRef(GameService gameService)
+        public void SetGameServiceRef(IGameService gameService)
         {
             this.gameService = gameService;
+            //gameService.PerformJump();
         }
 
         public void SetPlayerReference(GameObject player)
@@ -36,7 +38,8 @@ namespace GazeSystem
 
         private void PeformRaycast()
         {
-            if (Physics.Raycast(ray, out hitInfo, 200f))
+            
+            if (Physics.Raycast(ray, out hitInfo, 500f))
             {
                 if (hitInfo.collider == null)
                 {
@@ -46,6 +49,7 @@ namespace GazeSystem
                 if (hitInfo.collider.GetComponent<IUIView>() != null)
                 {
                     IUIView uIView = hitInfo.collider.GetComponent<IUIView>();
+                   // Debug.Log("uiView found");
                     counter += Time.deltaTime;
                     reticle.fillImage.fillAmount = counter / reticle.duration;
                     if (counter > reticle.duration)
@@ -61,8 +65,8 @@ namespace GazeSystem
                     reticle.fillImage.fillAmount = counter / reticle.duration;
                     if (counter > reticle.duration)
                     {
-                        gameService.PerformJump(jumpView);
-                       // jumpView.DisableJumpPoint();
+                       // gameService.CheckIfSame(gameService);
+                        gameService.PerformJump(jumpView);                       
                         counter = 0;
                     }
                 }

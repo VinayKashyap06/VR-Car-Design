@@ -9,6 +9,6 @@ namespace GazeSystem
     {
         void OnTick();
         void SetPlayerReference(GameObject player);
-        void SetGameServiceRef(GameService gameService);
+        void SetGameServiceRef(IGameService gameService);
     }
 }

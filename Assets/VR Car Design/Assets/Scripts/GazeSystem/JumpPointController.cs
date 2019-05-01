@@ -8,12 +8,12 @@ namespace GazeSystem
     {
         public void DisableJumpPoint()
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         public void EnableJumpPoint()
         {
-            this.gameObject.SetActive(true);
+            gameObject.SetActive(true);
         }
 
         public Vector3 GetPosition()
